@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Menu {
 
-    void menu(){
+    public void Menu(){
+        new LoginMenu();
         Scanner sc = new Scanner(System.in);
         for(;;){
             System.out.println("1.用户管理");

@@ -1,11 +1,8 @@
+import MENU.Menu;
+
 public class Main {
 
     public static void main(String[] args) {
-        new Main().go();
-    }
-
-
-    public void go(){
-
+        new Menu().Menu();
     }
 }

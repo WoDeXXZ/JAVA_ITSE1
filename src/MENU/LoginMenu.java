@@ -13,6 +13,5 @@ public class LoginMenu {
             String password=sc2.next();
             i++;
         }
-
     }
 }
