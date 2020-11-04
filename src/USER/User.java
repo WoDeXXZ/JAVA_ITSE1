@@ -1,26 +1,32 @@
 package USER;
 
-public class GeneralReader {
-    public GeneralReader() {
+public class User {
 
-        int ID = 0;
-        String password = "";
-        String name = "";
-        String unit = "";
-        int telephone = 0;
-        int count = 0;
+    public User() {
+        //无参构造函数
     }
 
-    public GeneralReader(int ID, String password, String name,
-                         String unit, int telephone, int count) {
+    public User(int type, int ID, String password, String name,
+                String unit, int telephone, int count) {
+        //有参构造函数
+        this.type = type;
         this.ID = ID;
         this.password = password;
         this.name = name;
         this.unit = unit;
         this.telephone = telephone;
         this.count = count;
-
     }
+
+    //下面是get和set函数
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
 
     public int getID() {
         return ID;
@@ -69,23 +75,25 @@ public class GeneralReader {
     public void setCount(int count) {
         this.count = count;
     }
+    //上面是get和set函数
 
     @Override
     public String toString() {
-        return "General_Reader{" +
-                "ID=" + ID +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", unit='" + unit + '\'' +
-                ", telephone=" + telephone +
-                ", count=" + count +
-                '}';
+        //覆写toString
+        return type +
+                "," + ID +
+                "," + password +
+                "," + name +
+                "," + unit +
+                "," + telephone +
+                "," + count + '\n';
     }
 
-    int ID;
-    String password;
-    String name;
-    String unit;
-    int telephone;
-    int count;
+    private int type;//账号类型
+    private int ID;//账号名
+    private String password;//密码
+    private String name;//姓名
+    private String unit;//单位
+    private int telephone;//电话
+    private int count;//可借书数
 }
