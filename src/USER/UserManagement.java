@@ -38,6 +38,7 @@ public class UserManagement {
 
     public static void Write(ArrayList<User> userArrayList) {
         //写入文件User.txt
+        Compare(userArrayList);
         try {
             FileWriter fileWriter = new FileWriter("src\\USER\\User.txt");
             for (User u : userArrayList) {
