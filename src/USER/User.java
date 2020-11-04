@@ -1,7 +1,8 @@
 package USER;
 
 public class User {
-
+    //用户类
+    //包含用户的所有基础信息
     public User() {
         //无参构造函数
     }
@@ -16,6 +17,17 @@ public class User {
         this.unit = unit;
         this.telephone = telephone;
         this.count = count;
+    }
+
+    public User(User user){
+        //复制构造函数
+        this.type = user.type;
+        this.ID = user.ID;
+        this.password = user.password;
+        this.name = user.name;
+        this.unit = user.unit;
+        this.telephone = user.telephone;
+        this.count = user.count;
     }
 
     //下面是get和set函数
