@@ -1,6 +1,6 @@
-package MENU;
+package view;
 
-import USER.UserManagement;
+import controller.UserManagement;
 
 import java.util.Scanner;
 

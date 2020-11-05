@@ -1,4 +1,6 @@
-package USER;
+package controller;
+
+import model.User;
 
 import java.io.*;
 import java.util.ArrayList;

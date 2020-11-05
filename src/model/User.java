@@ -1,4 +1,4 @@
-package USER;
+package model;
 
 public class User {
     //用户类
@@ -102,7 +102,7 @@ public class User {
     }
 
     private int type;//账号类型
-    private int ID;//账号名
+    private int ID;//用户名
     private String password;//密码
     private String name;//姓名
     private String unit;//单位
