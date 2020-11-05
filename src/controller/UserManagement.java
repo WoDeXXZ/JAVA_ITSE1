@@ -14,23 +14,23 @@ public class UserManagement {
     //存储数据类型为User的ArrayList集合
 
     public static void Read() {
-        //读取User文件到List集合
+        //读取User.txt文件到ArrayList集合
         userArrayList = new ArrayList<>();
         try {
-            File file = new File("src\\USER\\User.txt");
+            File file = new File("src\\model\\User.txt");
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String temp;
             while ((temp = reader.readLine()) != null) {
-                User user1 = new User();
-                user1.setType(Integer.parseInt(temp.split(",")[0]));
-                user1.setID(Integer.parseInt(temp.split(",")[1]));
-                user1.setPassword(temp.split(",")[2]);
-                user1.setName(temp.split(",")[3]);
-                user1.setUnit(temp.split(",")[4]);
-                user1.setTelephone(Integer.parseInt(temp.split(",")[5]));
-                user1.setCount(Integer.parseInt(temp.split(",")[6]));
+                User user = new User();
+                user.setType(Integer.parseInt(temp.split(",")[0]));
+                user.setID(Integer.parseInt(temp.split(",")[1]));
+                user.setPassword(temp.split(",")[2]);
+                user.setName(temp.split(",")[3]);
+                user.setUnit(temp.split(",")[4]);
+                user.setTelephone(Integer.parseInt(temp.split(",")[5]));
+                user.setCount(Integer.parseInt(temp.split(",")[6]));
 
-                userArrayList.add(user1);
+                userArrayList.add(user);
             }
             reader.close();
         } catch (NumberFormatException | IOException e) {
@@ -42,16 +42,15 @@ public class UserManagement {
         //写入文件User.txt
         Compare(userArrayList);
         try {
-            FileWriter fileWriter = new FileWriter("src\\USER\\User.txt");
-            for (User u : userArrayList) {
-                fileWriter.write(u.toString());
+            FileWriter fileWriter = new FileWriter("src\\model\\User.txt");
+            for (User user : userArrayList) {
+                fileWriter.write(user.toString());
             }
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     public static ArrayList<User> getUsers() {
         //获取所有用户信息
@@ -65,7 +64,7 @@ public class UserManagement {
     */
 
 
-    public static void input() {
+    public static void Input() {
         //用户信息录入
         Scanner scanner;
         System.out.println("请输入账号类型");
@@ -108,7 +107,7 @@ public class UserManagement {
         Write(userArrayList);
     }
 
-    public static void update() {
+    public static void Update() {
         //用户信息修改
         Scanner scanner;
         System.out.println("请输入账号");
@@ -141,7 +140,7 @@ public class UserManagement {
         }
     }
 
-    public static void delete() {
+    public static void Delete() {
         //用户信息删除
         Scanner scanner;
         System.out.println("请输入账号");
@@ -159,7 +158,7 @@ public class UserManagement {
         }
     }
 
-    public static void query() {
+    public static void Query() {
         //用户信息查询
         Scanner scanner;
         System.out.println("请输入账号");
@@ -175,11 +174,9 @@ public class UserManagement {
                 System.out.println("没有找到账号");
             }
         }
-
-
     }
 
-    public static void changePassword() {
+    public static void ChangePassword() {
         //用户密码修改
         Scanner scanner;
         System.out.println("请输入账号");
@@ -212,6 +209,18 @@ public class UserManagement {
     }
 
 
+    public static int FindAccountReturnType(int ID) {
+        //查找账号并返回账号类型
+        Read();
+        for (User user : userArrayList) {
+            if (ID == user.getID()) {
+                return user.getType();
+            }
+        }
+        return 0;
+    }
+
+
     public static boolean FindAccountPassword(int type, int ID, String password) {
         //查找账号密码
         Read();
@@ -238,9 +247,9 @@ public class UserManagement {
             User user1 = new User(userArrayList.get(temp));
             userArrayList.set(temp, userArrayList.get(i));
             userArrayList.set(i, user1);
-        }
-        for (User u : userArrayList) {
-            System.out.println(u.getID());
-        }
+        }/*
+        for (User user : userArrayList) {
+            System.out.println(user.getID());
+        }*/
     }
 }

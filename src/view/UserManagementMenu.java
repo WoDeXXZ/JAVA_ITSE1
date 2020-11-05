@@ -18,19 +18,19 @@ public class UserManagementMenu {
             case 0:
                 Menu.go();
             case 1:
-                UserManagement.input();
+                UserManagement.Input();
                 new UserManagementMenu();
             case 2:
-                UserManagement.update();
+                UserManagement.Update();
                 new UserManagementMenu();
             case 3:
-                UserManagement.delete();
+                UserManagement.Delete();
                 new UserManagementMenu();
             case 4:
-                UserManagement.query();
+                UserManagement.Query();
                 new UserManagementMenu();
             case 5:
-                UserManagement.changePassword();
+                UserManagement.ChangePassword();
                 new UserManagementMenu();
         }
     }

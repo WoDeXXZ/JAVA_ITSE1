@@ -94,6 +94,6 @@ public class BookCirculation {
     private int ID;//用户名
     private int book_number;//书号
     private String date;//日期
-    private int type;//借还书类型
+    private int type;//借还书类型 0是借书 1是还书
     private int operator;//操作人
 }

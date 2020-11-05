@@ -101,7 +101,7 @@ public class User {
                 "," + count + '\n';
     }
 
-    private int type;//账号类型
+    private int type;//账号类型 1是系统管理员 2是图书管理员 3是普通读者
     private int ID;//用户名
     private String password;//密码
     private String name;//姓名
