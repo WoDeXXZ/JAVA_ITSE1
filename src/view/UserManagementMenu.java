@@ -16,7 +16,7 @@ public class UserManagementMenu {
         int i = sc.nextInt();
         switch (i) {
             case 0:
-                Menu.go();
+                new Menu();
             case 1:
                 UserManagement.Input();
                 new UserManagementMenu();
@@ -31,6 +31,8 @@ public class UserManagementMenu {
                 new UserManagementMenu();
             case 5:
                 UserManagement.ChangePassword();
+                new UserManagementMenu();
+            default:
                 new UserManagementMenu();
         }
     }

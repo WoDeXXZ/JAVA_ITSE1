@@ -4,11 +4,14 @@ import model.User;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class UserManagement {
     //管理用户
     //每个用户的账号都是唯一的
+
+    public static User user_logged_into_this_system;//登录此系统的用户
 
     public static ArrayList<User> userArrayList;
     //存储数据类型为User的ArrayList集合
@@ -52,16 +55,44 @@ public class UserManagement {
         }
     }
 
-    public static ArrayList<User> getUsers() {
+    public static ArrayList<User> GetUsers() {
         //获取所有用户信息
         Read();
         return userArrayList;
     }
-    /*
-    public ArrayList<User> login(){//登录方法
 
+    public static boolean Login() {
+        //登录方法
+        for (int i = 0; true; i++) {
+            Scanner scanner;
+            System.out.println("请输入账号类型");
+            scanner = new Scanner(System.in);
+            int type = scanner.nextInt();
+
+            System.out.println("输入账号");
+            scanner = new Scanner(System.in);
+            int ID = scanner.nextInt();
+
+            System.out.println("输入密码");
+            scanner = new Scanner(System.in);
+            String password = scanner.next();
+            if (FindAccountPassword(type, ID, password)) {
+                user_logged_into_this_system = new User(
+                        Objects.requireNonNull(FindAccountReturnUser(ID)));
+                return true;
+            }
+            if (i == 0) {
+                System.out.println("输入错误，第一次机会");
+            }
+            if (i == 1) {
+                System.out.println("输入错误，第二次机会");
+            }
+            if (i == 2) {
+                System.out.println("三次机会已过，返回登录界面");
+                return false;
+            }
+        }
     }
-    */
 
 
     public static void Input() {
@@ -171,7 +202,7 @@ public class UserManagement {
                 break;
             }
             if (i == userArrayList.size() - 1) {
-                System.out.println("没有找到账号");
+                System.out.println("没有找到" + ID + "账号");
             }
         }
     }
@@ -191,7 +222,7 @@ public class UserManagement {
                 break;
             }
             if (i == userArrayList.size() - 1) {
-                System.out.println("没有找到账号");
+                System.out.println("没有找到" + ID + "账号");
             }
         }
 
@@ -209,15 +240,15 @@ public class UserManagement {
     }
 
 
-    public static int FindAccountReturnType(int ID) {
-        //查找账号并返回账号类型
+    public static User FindAccountReturnUser(int ID) {
+        //查找账号并返回账号
         Read();
         for (User user : userArrayList) {
             if (ID == user.getID()) {
-                return user.getType();
+                return user;
             }
         }
-        return 0;
+        return null;
     }
 
 
@@ -247,9 +278,6 @@ public class UserManagement {
             User user1 = new User(userArrayList.get(temp));
             userArrayList.set(temp, userArrayList.get(i));
             userArrayList.set(i, user1);
-        }/*
-        for (User user : userArrayList) {
-            System.out.println(user.getID());
-        }*/
+        }
     }
 }

@@ -134,7 +134,6 @@ public class BookManagement {
                 System.out.println("没有找到" + book_number + "书号");
             }
         }
-
     }
 
     public static void QueryTitle() {
@@ -154,7 +153,6 @@ public class BookManagement {
                 System.out.println("没有找到" + title + "书名");
             }
         }
-
     }
 
     public static void QueryAuthor() {
@@ -174,7 +172,6 @@ public class BookManagement {
                 System.out.println("没有找到" + author + "作者");
             }
         }
-
     }
 
     public static boolean FindAccount(int book_number) {
@@ -224,17 +221,15 @@ public class BookManagement {
         for (int i = 0; i < bookArrayList.size(); i++) {
             int temp = i;
             for (int j = i + 1; j < bookArrayList.size(); j++) {
-                if (bookArrayList.get(j).getBook_number() < bookArrayList.get(temp).getBook_number()) {
+                if (bookArrayList.get(j).getBook_number() <
+                        bookArrayList.get(temp).getBook_number()) {
                     temp = j;
                 }
             }
             Book book = new Book(bookArrayList.get(temp));
             bookArrayList.set(temp, bookArrayList.get(i));
             bookArrayList.set(i, book);
-        }/*
-        for (Book book : bookArrayList) {
-            System.out.println(book.getBook_number());
-        }*/
+        }
     }
 }
 

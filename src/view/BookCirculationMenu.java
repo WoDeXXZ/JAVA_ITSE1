@@ -13,12 +13,14 @@ public class BookCirculationMenu {
         int i = sc.nextInt();
         switch (i) {
             case 0:
-                Menu.go();
+                new Menu();
             case 1:
                 new BookCirculationMenu();
             case 2:
                 new BookCirculationMenu();
             case 3:
+                new BookCirculationMenu();
+            default:
                 new BookCirculationMenu();
         }
     }

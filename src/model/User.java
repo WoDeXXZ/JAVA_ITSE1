@@ -19,7 +19,7 @@ public class User {
         this.count = count;
     }
 
-    public User(User user){
+    public User(User user) {
         //复制构造函数
         this.type = user.type;
         this.ID = user.ID;
