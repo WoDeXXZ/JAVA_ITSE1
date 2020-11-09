@@ -1,6 +1,4 @@
-import model.User;
 import view.LoginMenu;
-import view.Menu;
 
 /*
 本系统使用MVC（Model View Controller 模型-视图-控制器）模式实现
@@ -13,7 +11,5 @@ import view.Menu;
 public class Main {
     public static void main(String[] args) {
         new LoginMenu();
-
-        //new Menu();
     }
 }

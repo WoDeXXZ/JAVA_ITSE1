@@ -12,7 +12,7 @@ public class Menu {
         int i = sc.nextInt();
         switch (i) {
             case 0:
-                break;
+                return;
             case 1:
                 new UserManagementMenu();
             case 2:
