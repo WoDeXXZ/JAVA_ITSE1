@@ -1,6 +1,8 @@
 package model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     //用户类
     //包含用户的所有基础信息
     public User() {

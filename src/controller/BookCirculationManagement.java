@@ -52,7 +52,7 @@ public class BookCirculationManagement {
         }
     }
 
-    public static void BorrowBooks() {
+    public static void BorrowBook() {
         //借书
 
         //自动生成流水号
@@ -72,7 +72,7 @@ public class BookCirculationManagement {
         int ID = scanner.nextInt();
 
         while (!UserManagement.FindAccount(ID) && Objects.requireNonNull(
-                UserManagement.FindAccountReturnUser(ID)).getCount() != 0) {
+                UserManagement.Query(ID)).getCount() != 0) {
             System.out.println("此账号不存在或此账号借书达到最大，请重新输入账号");
             scanner = new Scanner(System.in);
             ID = scanner.nextInt();
@@ -159,7 +159,7 @@ public class BookCirculationManagement {
     }
 
 
-    public static void QueryBookCirculation() {
+    public static void QueryTotal() {
         //总借阅信息查询
         Read();
         for (BookCirculation bookCirculation : bookCirculationArrayList) {
@@ -167,7 +167,7 @@ public class BookCirculationManagement {
         }
     }
 
-    public static void QueryBookCirculationSerial_Number() {
+    public static void QuerySerial_Number() {
         //流水号借阅信息查询
         Scanner scanner;
         System.out.println("请输入流水号");
@@ -185,7 +185,7 @@ public class BookCirculationManagement {
         }
     }
 
-    public static void QueryBookCirculationID() {
+    public static void QueryID() {
         //用户名借阅信息查询
         Scanner scanner;
         System.out.println("请输入用户名");
@@ -203,7 +203,7 @@ public class BookCirculationManagement {
         }
     }
 
-    public static void QueryBookCirculationBook_Number() {
+    public static void QueryBook_Number() {
         //书号借阅信息查询
         Scanner scanner;
         System.out.println("请输入书号");
@@ -221,7 +221,7 @@ public class BookCirculationManagement {
         }
     }
 
-    public static void QueryBookCirculationType() {
+    public static void QueryType() {
         //借还书类型借阅信息查询
         Scanner scanner;
         System.out.println("请输入借还书类型");
@@ -240,7 +240,7 @@ public class BookCirculationManagement {
         }
     }
 
-    public static void QueryBookCirculationOperator() {
+    public static void QueryOperator() {
         //操作人借阅信息查询
         Scanner scanner;
         System.out.println("请输入操作人");

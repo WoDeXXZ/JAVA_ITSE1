@@ -110,6 +110,7 @@ public class BookManagement {
                 System.out.println("请输入藏书量");
                 scanner = new Scanner(System.in);
                 bookArrayList.get(i).setCount(scanner.nextInt());
+                Write(bookArrayList);
                 break;
             }
             if (i == bookArrayList.size() - 1) {
@@ -207,6 +208,7 @@ public class BookManagement {
         for (int i = 0; i < bookArrayList.size(); i++) {
             if (book_number == bookArrayList.get(i).getBook_number()) {
                 bookArrayList.remove(i);
+                Write(bookArrayList);
                 break;
             }
             if (i == bookArrayList.size() - 1) {

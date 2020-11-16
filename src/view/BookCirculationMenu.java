@@ -15,11 +15,11 @@ public class BookCirculationMenu {
             case 0:
                 new Menu();
             case 1:
-                new BookCirculationMenu();
+                new BookCirculationBorrowBookMenu();
             case 2:
-                new BookCirculationMenu();
+                new BookCirculationReturnBookMenu();
             case 3:
-                new BookCirculationMenu();
+                new BookCirculationQueryMenu();
             default:
                 new BookCirculationMenu();
         }

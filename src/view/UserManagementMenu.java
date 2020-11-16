@@ -12,26 +12,41 @@ public class UserManagementMenu {
         System.out.println("4. 用户信息查询 ");
         System.out.println("5. 用户密码修改 ");
         System.out.println("0. 返回主菜单 ");
-        Scanner sc = new Scanner(System.in);
-        int i = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int i = scanner.nextInt();
         switch (i) {
             case 0:
                 new Menu();
             case 1:
-                UserManagement.Input();
-                new UserManagementMenu();
+                if (UserManagement.user_logged_into_this_system.getType() == 1) {
+                    new UserInputMenu();
+                } else {
+                    System.out.println("没有权限");
+                    new UserManagementMenu();
+                }
             case 2:
-                UserManagement.Update();
-                new UserManagementMenu();
+                if (UserManagement.user_logged_into_this_system.getType() == 1) {
+                    new UserUpdateMenu();
+                } else {
+                    System.out.println("没有权限");
+                    new UserManagementMenu();
+                }
             case 3:
-                UserManagement.Delete();
-                new UserManagementMenu();
+                if (UserManagement.user_logged_into_this_system.getType() == 1) {
+                    new UserDeleteMenu();
+                } else {
+                    System.out.println("没有权限");
+                    new UserManagementMenu();
+                }
             case 4:
-                UserManagement.Query();
-                new UserManagementMenu();
+                if (UserManagement.user_logged_into_this_system.getType() == 1) {
+                    new UserQueryMenu();
+                } else {
+                    System.out.println("没有权限");
+                    new UserManagementMenu();
+                }
             case 5:
-                UserManagement.ChangePassword();
-                new UserManagementMenu();
+                new UserChangePasswordMenu();
             default:
                 new UserManagementMenu();
         }

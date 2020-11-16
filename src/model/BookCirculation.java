@@ -1,6 +1,8 @@
 package model;
 
-public class BookCirculation {
+import java.io.Serializable;
+
+public class BookCirculation implements Serializable {
     //图书流通类
     //包含图书流通的所有基础信息
 

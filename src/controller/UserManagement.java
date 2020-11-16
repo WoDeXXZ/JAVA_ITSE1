@@ -5,7 +5,6 @@ import model.User;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class UserManagement {
     //管理用户
@@ -61,186 +60,57 @@ public class UserManagement {
         return userArrayList;
     }
 
-    public static boolean Login() {
+    public static boolean Login(int ID, String password) {
         //登录方法
-        for (int i = 0; true; i++) {
-            Scanner scanner;
-            System.out.println("请输入账号类型");
-            scanner = new Scanner(System.in);
-            int type = scanner.nextInt();
-
-            System.out.println("输入账号");
-            scanner = new Scanner(System.in);
-            int ID = scanner.nextInt();
-
-            System.out.println("输入密码");
-            scanner = new Scanner(System.in);
-            String password = scanner.next();
-            if (FindAccountPassword(type, ID, password)) {
-                user_logged_into_this_system = new User(
-                        Objects.requireNonNull(FindAccountReturnUser(ID)));
-                return true;
-            }
-            if (i == 0) {
-                System.out.println("输入错误，第一次机会");
-            }
-            if (i == 1) {
-                System.out.println("输入错误，第二次机会");
-            }
-            if (i == 2) {
-                System.out.println("三次机会已过，返回登录界面");
-                return false;
-            }
+        if (FindAccountPassword(ID, password)) {
+            user_logged_into_this_system = new User(
+                    Objects.requireNonNull(Query(ID)));
+            return true;
+        } else {
+            return false;
         }
     }
 
 
-    public static void Input() {
+    public static void Input(int type, int ID, String password, String name,
+                             String unit, int telephone, int count) {
         //用户信息录入
-        Scanner scanner;
-        System.out.println("请输入账号类型");
-        scanner = new Scanner(System.in);
-        int type = scanner.nextInt();
-
-        System.out.println("请输入账号");
-        scanner = new Scanner(System.in);
-        int ID = scanner.nextInt();
-
-        while (FindAccount(ID)) {
-            System.out.println("此账号已存在，请输入新的账号");
-            scanner = new Scanner(System.in);
-            ID = scanner.nextInt();
-        }
-
-        System.out.println("请输入密码");
-        scanner = new Scanner(System.in);
-        String password = scanner.next();
-
-        System.out.println("请输入姓名");
-        scanner = new Scanner(System.in);
-        String name = scanner.next();
-
-        System.out.println("请输入单位");
-        scanner = new Scanner(System.in);
-        String unit = scanner.next();
-
-        System.out.println("请输入电话");
-        scanner = new Scanner(System.in);
-        int telephone = scanner.nextInt();
-
-        System.out.println("请输入可借书数");
-        scanner = new Scanner(System.in);
-        int count = scanner.nextInt();
-
         User user = new User(type, ID, password, name, unit, telephone, count);
         Read();
         userArrayList.add(user);
         Write(userArrayList);
     }
 
-    public static void Update() {
+    public static void Update(int ID, String name, String unit, int telephone, int count) {
         //用户信息修改
-        Scanner scanner;
-        System.out.println("请输入账号");
-        scanner = new Scanner(System.in);
-        int ID = scanner.nextInt();
-
         Read();
-        for (int i = 0; i < userArrayList.size(); i++) {
-            if (ID == userArrayList.get(i).getID()) {
-                System.out.println("请输入姓名");
-                scanner = new Scanner(System.in);
-                userArrayList.get(i).setName(scanner.next());
-
-                System.out.println("请输入单位");
-                scanner = new Scanner(System.in);
-                userArrayList.get(i).setUnit(scanner.next());
-
-                System.out.println("请输入电话");
-                scanner = new Scanner(System.in);
-                userArrayList.get(i).setTelephone(scanner.nextInt());
-
-                System.out.println("请输入可借书数");
-                scanner = new Scanner(System.in);
-                userArrayList.get(i).setCount(scanner.nextInt());
+        for (User user : userArrayList) {
+            if (ID == user.getID()) {
+                user.setName(name);
+                user.setUnit(unit);
+                user.setTelephone(telephone);
+                user.setCount(count);
                 break;
             }
-            if (i == userArrayList.size() - 1) {
-                System.out.println("没有找到账号");
-            }
         }
+        Write(userArrayList);
     }
 
-    public static void Delete() {
+    public static void Delete(int ID) {
         //用户信息删除
-        Scanner scanner;
-        System.out.println("请输入账号");
-        scanner = new Scanner(System.in);
-        int ID = scanner.nextInt();
         Read();
         for (int i = 0; i < userArrayList.size(); i++) {
             if (ID == userArrayList.get(i).getID()) {
                 userArrayList.remove(i);
+                Write(userArrayList);
                 break;
             }
-            if (i == userArrayList.size() - 1) {
-                System.out.println("没有找到账号");
-            }
         }
+        Write(userArrayList);
     }
 
-    public static void Query() {
+    public static User Query(int ID) {
         //用户信息查询
-        Scanner scanner;
-        System.out.println("请输入账号");
-        scanner = new Scanner(System.in);
-        int ID = scanner.nextInt();
-        Read();
-        for (int i = 0; i < userArrayList.size(); i++) {
-            if (ID == userArrayList.get(i).getID()) {
-                System.out.println(userArrayList.get(i).toString());
-                break;
-            }
-            if (i == userArrayList.size() - 1) {
-                System.out.println("没有找到" + ID + "账号");
-            }
-        }
-    }
-
-    public static void ChangePassword() {
-        //用户密码修改
-        Scanner scanner;
-        System.out.println("请输入账号");
-        scanner = new Scanner(System.in);
-        int ID = scanner.nextInt();
-        Read();
-        for (int i = 0; i < userArrayList.size(); i++) {
-            if (ID == userArrayList.get(i).getID()) {
-                System.out.println("请输入密码");
-                scanner = new Scanner(System.in);
-                userArrayList.get(i).setPassword(scanner.next());
-                break;
-            }
-            if (i == userArrayList.size() - 1) {
-                System.out.println("没有找到" + ID + "账号");
-            }
-        }
-
-    }
-
-    public static boolean FindAccount(int ID) {
-        //查找账号
-        Read();
-        for (User user : userArrayList) {
-            if (ID == user.getID()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    public static User FindAccountReturnUser(int ID) {
         //查找账号并返回账号
         Read();
         for (User user : userArrayList) {
@@ -251,13 +121,34 @@ public class UserManagement {
         return null;
     }
 
-
-    public static boolean FindAccountPassword(int type, int ID, String password) {
-        //查找账号密码
+    public static void ChangePassword(int ID, String password) {
+        //用户密码修改
         Read();
         for (User user : userArrayList) {
-            if (type == user.getType()
-                    && ID == user.getID()
+            if (ID == user.getID()) {
+                user.setPassword(password);
+                break;
+            }
+        }
+        Write(userArrayList);
+    }
+
+    public static boolean FindAccount(int ID) {
+        //判断账号是否存在
+        Read();
+        for (User user : userArrayList) {
+            if (ID == user.getID()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean FindAccountPassword(int ID, String password) {
+        //判断账号密码是否存在
+        Read();
+        for (User user : userArrayList) {
+            if (ID == user.getID()
                     && password.equals(user.getPassword())) {
                 return true;
             }

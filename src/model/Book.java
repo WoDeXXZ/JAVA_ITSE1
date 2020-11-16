@@ -1,6 +1,8 @@
 package model;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
     //图书类
     //包含图书的所有基础信息
     public Book() {

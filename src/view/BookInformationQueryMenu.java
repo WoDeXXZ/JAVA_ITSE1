@@ -14,11 +14,11 @@ public class BookInformationQueryMenu {
             case 0:
                 new Menu();
             case 1:
-                new BookInformationQueryMenu();
+                new BookQueryBookNumberMenu();
             case 2:
-                new BookInformationQueryMenu();
+                new BookQueryTitleMenu();
             case 3:
-                new BookInformationQueryMenu();
+                new BookQueryAuthorMenu();
             default:
                 new BookInformationQueryMenu();
         }

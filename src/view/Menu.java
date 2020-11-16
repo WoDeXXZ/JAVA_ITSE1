@@ -1,5 +1,7 @@
 package view;
 
+import controller.UserManagement;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -8,17 +10,22 @@ public class Menu {
         System.out.println("2.图书管理");
         System.out.println("3.图书流通管理");
         System.out.println("0.退出系统");
-        Scanner sc = new Scanner(System.in);
-        int i = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int i = scanner.nextInt();
         switch (i) {
             case 0:
                 return;
             case 1:
                 new UserManagementMenu();
             case 2:
-                new LibraryManagementMenu();
+                new BookManagementMenu();
             case 3:
-                new BookCirculationMenu();
+                if (UserManagement.user_logged_into_this_system.getType() == 2) {
+                    new BookCirculationMenu();
+                } else {
+                    System.out.println("没有权限");
+                    new Menu();
+                }
             default:
                 new Menu();
         }
