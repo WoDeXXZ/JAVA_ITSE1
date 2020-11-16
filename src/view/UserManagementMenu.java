@@ -20,6 +20,7 @@ public class UserManagementMenu {
             case 1:
                 if (UserManagement.user_logged_into_this_system.getType() == 1) {
                     new UserInputMenu();
+                    new UserManagementMenu();
                 } else {
                     System.out.println("没有权限");
                     new UserManagementMenu();
@@ -27,6 +28,7 @@ public class UserManagementMenu {
             case 2:
                 if (UserManagement.user_logged_into_this_system.getType() == 1) {
                     new UserUpdateMenu();
+                    new UserManagementMenu();
                 } else {
                     System.out.println("没有权限");
                     new UserManagementMenu();
@@ -34,6 +36,7 @@ public class UserManagementMenu {
             case 3:
                 if (UserManagement.user_logged_into_this_system.getType() == 1) {
                     new UserDeleteMenu();
+                    new UserManagementMenu();
                 } else {
                     System.out.println("没有权限");
                     new UserManagementMenu();
@@ -41,12 +44,14 @@ public class UserManagementMenu {
             case 4:
                 if (UserManagement.user_logged_into_this_system.getType() == 1) {
                     new UserQueryMenu();
+                    new UserManagementMenu();
                 } else {
                     System.out.println("没有权限");
                     new UserManagementMenu();
                 }
             case 5:
                 new UserChangePasswordMenu();
+                new UserManagementMenu();
             default:
                 new UserManagementMenu();
         }

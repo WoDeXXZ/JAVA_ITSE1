@@ -41,7 +41,5 @@ public class UserUpdateMenu {
 
         UserManagement.Update(ID, name, unit, telephone, count);
         System.out.println("修改用户信息成功");
-        new UserManagementMenu();
-
     }
 }

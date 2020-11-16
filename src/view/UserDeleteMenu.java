@@ -13,6 +13,5 @@ public class UserDeleteMenu {
 
         UserManagement.Delete(ID);
         System.out.println("删除用户成功");
-
     }
 }

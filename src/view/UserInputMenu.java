@@ -49,6 +49,5 @@ public class UserInputMenu {
 
         UserManagement.Input(type, ID, password, name, unit, telephone, count);
         System.out.println("录入用户信息成功");
-        new UserManagementMenu();
     }
 }

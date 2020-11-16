@@ -20,6 +20,7 @@ public class BookManagementMenu {
             case 1:
                 if (UserManagement.user_logged_into_this_system.getType() == 2) {
                     new BookInputMenu();
+                    new BookManagementMenu();
                 } else {
                     System.out.println("没有权限");
                     new Menu();
@@ -27,6 +28,7 @@ public class BookManagementMenu {
             case 2:
                 if (UserManagement.user_logged_into_this_system.getType() == 2) {
                     new BookUpdateMenu();
+                    new BookManagementMenu();
                 } else {
                     System.out.println("没有权限");
                     new Menu();
@@ -34,12 +36,14 @@ public class BookManagementMenu {
             case 3:
                 if (UserManagement.user_logged_into_this_system.getType() == 2) {
                     new BookDeleteMenu();
+                    new BookManagementMenu();
                 } else {
                     System.out.println("没有权限");
                     new Menu();
                 }
             case 4:
-                new BookInformationQueryMenu();
+                new BookQueryMenu();
+                new BookManagementMenu();
             default:
                 new BookManagementMenu();
         }

@@ -2,9 +2,9 @@ package view;
 
 import java.util.Scanner;
 
-public class BookCirculationMenu {
+public class BookCirculationManagementMenu {
 
-    public BookCirculationMenu() {
+    public BookCirculationManagementMenu() {
         System.out.println("1. 借书处理 ");
         System.out.println("2. 还书处理 ");
         System.out.println("3. 借阅信息查询 ");
@@ -16,12 +16,15 @@ public class BookCirculationMenu {
                 new Menu();
             case 1:
                 new BookCirculationBorrowBookMenu();
+                new BookCirculationManagementMenu();
             case 2:
                 new BookCirculationReturnBookMenu();
+                new BookCirculationManagementMenu();
             case 3:
                 new BookCirculationQueryMenu();
+                new BookCirculationManagementMenu();
             default:
-                new BookCirculationMenu();
+                new BookCirculationManagementMenu();
         }
     }
 }

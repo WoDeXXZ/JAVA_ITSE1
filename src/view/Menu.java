@@ -14,14 +14,14 @@ public class Menu {
         int i = scanner.nextInt();
         switch (i) {
             case 0:
-                return;
+                System.exit(0);
             case 1:
                 new UserManagementMenu();
             case 2:
                 new BookManagementMenu();
             case 3:
                 if (UserManagement.user_logged_into_this_system.getType() == 2) {
-                    new BookCirculationMenu();
+                    new BookCirculationManagementMenu();
                 } else {
                     System.out.println("没有权限");
                     new Menu();
