@@ -5,7 +5,6 @@ import controller.BookManagement;
 import java.util.Scanner;
 
 public class BookQueryBookNumberMenu {
-
     public BookQueryBookNumberMenu() {
         Scanner scanner;
         System.out.println("请输入书号");

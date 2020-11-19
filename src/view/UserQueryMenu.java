@@ -5,7 +5,6 @@ import controller.UserManagement;
 import java.util.Scanner;
 
 public class UserQueryMenu {
-
     public UserQueryMenu() {
         Scanner scanner;
         System.out.println("请输入账号");

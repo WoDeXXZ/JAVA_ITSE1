@@ -11,23 +11,29 @@ public class BookCirculationQueryMenu {
         System.out.println("5. 借还书类型借阅信息查询 ");
         System.out.println("6. 操作人借阅信息查询");
         System.out.println("0. 返回主菜单 ");
-        Scanner sc = new Scanner(System.in);
-        int i = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int i = scanner.nextInt();
         switch (i) {
             case 0:
                 new Menu();
             case 1:
                 new BookCirculationQueryTotalMenu();
+                new BookCirculationQueryMenu();
             case 2:
                 new BookCirculationQuerySerial_NumberMenu();
+                new BookCirculationQueryMenu();
             case 3:
                 new BookCirculationQueryIDMenu();
+                new BookCirculationQueryMenu();
             case 4:
                 new BookCirculationQueryBook_NumberMenu();
+                new BookCirculationQueryMenu();
             case 5:
                 new BookCirculationQueryTypeMenu();
+                new BookCirculationQueryMenu();
             case 6:
                 new BookCirculationQueryOperatorMenu();
+                new BookCirculationQueryMenu();
             default:
                 new BookCirculationQueryMenu();
         }

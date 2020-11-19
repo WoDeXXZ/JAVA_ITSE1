@@ -56,7 +56,7 @@ public class UserManagement {
 
     public static boolean Login(int ID, String password) {
         //登录方法
-        if (FindAccountPassword(ID, password)) {
+        if (JudgmentAccountPassword(ID, password)) {
             user_logged_into_this_system = new User(
                     Objects.requireNonNull(Query(ID)));
             return true;
@@ -126,7 +126,7 @@ public class UserManagement {
         Write(userArrayList);
     }
 
-    public static boolean FindAccount(int ID) {
+    public static boolean JudgmentAccount(int ID) {
         //判断账号是否存在
         Read();
         for (User user : userArrayList) {
@@ -137,7 +137,7 @@ public class UserManagement {
         return false;
     }
 
-    public static boolean FindAccountPassword(int ID, String password) {
+    public static boolean JudgmentAccountPassword(int ID, String password) {
         //判断账号密码是否存在
         Read();
         for (User user : userArrayList) {

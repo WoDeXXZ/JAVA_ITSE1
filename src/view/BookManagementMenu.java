@@ -5,7 +5,6 @@ import controller.UserManagement;
 import java.util.Scanner;
 
 public class BookManagementMenu {
-
     public BookManagementMenu() {
         System.out.println("1. 图书信息录入");
         System.out.println("2. 图书信息修改");

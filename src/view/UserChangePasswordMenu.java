@@ -11,7 +11,7 @@ public class UserChangePasswordMenu {
         scanner = new Scanner(System.in);
         int ID = scanner.nextInt();
 
-        while (!UserManagement.FindAccount(ID)) {
+        while (!UserManagement.JudgmentAccount(ID)) {
             System.out.println("此账号不存在，请输入新的账号");
             scanner = new Scanner(System.in);
             ID = scanner.nextInt();

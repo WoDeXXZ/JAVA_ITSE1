@@ -3,7 +3,6 @@ package view;
 import java.util.Scanner;
 
 public class BookCirculationManagementMenu {
-
     public BookCirculationManagementMenu() {
         System.out.println("1. 借书处理 ");
         System.out.println("2. 还书处理 ");

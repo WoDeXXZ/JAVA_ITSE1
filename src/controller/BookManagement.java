@@ -119,8 +119,8 @@ public class BookManagement {
         return null;
     }
 
-    public static boolean FindAccount(int book_number) {
-        //查找书号
+    public static boolean JudgmentAccount(int book_number) {
+        //判断书号是否存在
         Read();
         for (Book book : bookArrayList) {
             if (book_number == book.getBook_number()) {

@@ -52,7 +52,7 @@ public class BookCirculationManagement {
         }
     }
 
-    public static void BorrowBook() {
+    public static void BorrowBook(int ID, int book_number) {
         //借书
 
         //自动生成流水号
@@ -66,29 +66,6 @@ public class BookCirculationManagement {
             serial_number = 1;
         }
 
-        //检测借书账号
-        Scanner scanner;
-        System.out.println("请输入借书账号");
-        scanner = new Scanner(System.in);
-        int ID = scanner.nextInt();
-
-        while (!UserManagement.FindAccount(ID) && Objects.requireNonNull(
-                UserManagement.Query(ID)).getCount() != 0) {
-            System.out.println("此账号不存在或此账号借书达到最大，请重新输入账号");
-            scanner = new Scanner(System.in);
-            ID = scanner.nextInt();
-        }
-
-        //检测书号是否存在及该书是否被借完
-        System.out.println("请输入书号");
-        scanner = new Scanner(System.in);
-        int book_number = scanner.nextInt();
-        while (!BookManagement.FindAccount(book_number) &&
-                BookManagement.FindAccountReturnCount(book_number) != 0) {
-            System.out.println("此书号不存在或此书号的书已借完，请输入新的书号");
-            scanner = new Scanner(System.in);
-            book_number = scanner.nextInt();
-        }
         //自动生成当前时间
         String date = GenerateCurrentTime();
 
@@ -110,24 +87,19 @@ public class BookCirculationManagement {
         Write(bookCirculationArrayList);
     }
 
-    public static void ReturnBook() {
+    public static void ReturnBook(int serial_number) {
         //还书
 
-        //检测流水号
         Read();
-        Scanner scanner;
-        System.out.println("请输入流水号");
-        scanner = new Scanner(System.in);
-        int serial_number = scanner.nextInt();
-        BookCirculation bookCirculation;
         for (int i = 0; i < bookCirculationArrayList.size(); i++) {
             if (serial_number == bookCirculationArrayList.get(i).getSerial_number()) {
-                bookCirculation = new BookCirculation(bookCirculationArrayList.get(i));
+                BookCirculation bookCirculation = new BookCirculation(
+                        bookCirculationArrayList.get(i));
 
-                //借书账号
+                //借书的账号
                 int ID = bookCirculation.getID();
 
-                //借的书号
+                //所借的书号
                 int book_number = bookCirculation.getBook_number();
 
                 //自动生成当前时间
@@ -151,9 +123,6 @@ public class BookCirculationManagement {
                 Write(bookCirculationArrayList);
                 break;
             }
-            if (i == bookCirculationArrayList.size() - 1) {
-                System.out.println("没有找到" + serial_number + "流水号");
-            }
         }
     }
 
@@ -169,103 +138,79 @@ public class BookCirculationManagement {
         return y + "年" + m + "月" + d + "日" + h + "时" + mi + "分" + s + "秒";
     }
 
-    public static void QueryTotal() {
-        //总借阅信息查询
+    public static boolean JudgmentSerial_Number(int serial_number) {
+        //判断流水号是否存在
         Read();
         for (BookCirculation bookCirculation : bookCirculationArrayList) {
-            System.out.println(bookCirculation.toString());
+            if (serial_number == bookCirculation.getSerial_number()) {
+                return true;
+            }
         }
+        return false;
     }
 
-    public static void QuerySerial_Number() {
+    public static ArrayList<BookCirculation> QueryTotal() {
+        //总借阅信息查询
+        Read();
+        return bookCirculationArrayList;
+    }
+
+    public static BookCirculation QuerySerial_Number(int serial_number) {
         //流水号借阅信息查询
-        Scanner scanner;
-        System.out.println("请输入流水号");
-        scanner = new Scanner(System.in);
-        int serial_number = scanner.nextInt();
         Read();
-        for (int i = 0; i < bookCirculationArrayList.size(); i++) {
-            if (serial_number == bookCirculationArrayList.get(i).getSerial_number()) {
-                System.out.println(bookCirculationArrayList.get(i).toString());
-                break;
-            }
-            if (i == bookCirculationArrayList.size() - 1) {
-                System.out.println("没有找到" + serial_number + "流水号");
+        for (BookCirculation bookCirculation : bookCirculationArrayList) {
+            if (serial_number == bookCirculation.getSerial_number()) {
+                return bookCirculation;
             }
         }
+        return null;
     }
 
-    public static void QueryID() {
+    public static ArrayList<BookCirculation> QueryID(int ID) {
         //用户名借阅信息查询
-        Scanner scanner;
-        System.out.println("请输入用户名");
-        scanner = new Scanner(System.in);
-        int ID = scanner.nextInt();
         Read();
-        for (int i = 0; i < bookCirculationArrayList.size(); i++) {
-            if (ID == bookCirculationArrayList.get(i).getID()) {
-                System.out.println(bookCirculationArrayList.get(i).toString());
-                break;
-            }
-            if (i == bookCirculationArrayList.size() - 1) {
-                System.out.println("没有找到" + ID + "用户名");
+        ArrayList<BookCirculation> bookCirculationArrayList1 = new ArrayList<>();
+        for (BookCirculation bookCirculation : bookCirculationArrayList) {
+            if (ID == bookCirculation.getID()) {
+                bookCirculationArrayList1.add(bookCirculation);
             }
         }
+        return bookCirculationArrayList1;
     }
 
-    public static void QueryBook_Number() {
+    public static ArrayList<BookCirculation> QueryBook_Number(int book_number) {
         //书号借阅信息查询
-        Scanner scanner;
-        System.out.println("请输入书号");
-        scanner = new Scanner(System.in);
-        int book_number = scanner.nextInt();
         Read();
-        for (int i = 0; i < bookCirculationArrayList.size(); i++) {
-            if (book_number == bookCirculationArrayList.get(i).getBook_number()) {
-                System.out.println(bookCirculationArrayList.get(i).toString());
-                break;
-            }
-            if (i == bookCirculationArrayList.size() - 1) {
-                System.out.println("没有找到" + book_number + "书号");
+        ArrayList<BookCirculation> bookCirculationArrayList1 = new ArrayList<>();
+        for (BookCirculation bookCirculation : bookCirculationArrayList) {
+            if (book_number == bookCirculation.getBook_number()) {
+                bookCirculationArrayList1.add(bookCirculation);
             }
         }
+        return bookCirculationArrayList1;
     }
 
-    public static void QueryType() {
+    public static ArrayList<BookCirculation> QueryType(int type) {
         //借还书类型借阅信息查询
-        Scanner scanner;
-        System.out.println("请输入借还书类型");
-        scanner = new Scanner(System.in);
-        int type = scanner.nextInt();
         Read();
-        int temp = 0;
-        for (int i = 0; i < bookCirculationArrayList.size(); i++) {
-            if (type == bookCirculationArrayList.get(i).getType()) {
-                System.out.println(bookCirculationArrayList.get(i).toString());
-                temp++;
-            }
-            if (temp == 0 && i == bookCirculationArrayList.size() - 1) {
-                System.out.println("没有找到" + type + "借还书类型");
+        ArrayList<BookCirculation> bookCirculationArrayList1 = new ArrayList<>();
+        for (BookCirculation bookCirculation : bookCirculationArrayList) {
+            if (type == bookCirculation.getType()) {
+                bookCirculationArrayList1.add(bookCirculation);
             }
         }
+        return bookCirculationArrayList1;
     }
 
-    public static void QueryOperator() {
+    public static ArrayList<BookCirculation> QueryOperator(int operator) {
         //操作人借阅信息查询
-        Scanner scanner;
-        System.out.println("请输入操作人");
-        scanner = new Scanner(System.in);
-        int operator = scanner.nextInt();
         Read();
-        int temp = 0;
-        for (int i = 0; i < bookCirculationArrayList.size(); i++) {
-            if (operator == bookCirculationArrayList.get(i).getOperator()) {
-                System.out.println(bookCirculationArrayList.get(i).toString());
-                temp++;
-            }
-            if (temp == 0 && i == bookCirculationArrayList.size() - 1) {
-                System.out.println("没有找到" + operator + "操作人");
+        ArrayList<BookCirculation> bookCirculationArrayList1 = new ArrayList<>();
+        for (BookCirculation bookCirculation : bookCirculationArrayList) {
+            if (operator == bookCirculation.getOperator()) {
+                bookCirculationArrayList1.add(bookCirculation);
             }
         }
+        return bookCirculationArrayList1;
     }
 }
