@@ -20,27 +20,27 @@ public class BookManagementMenu {
             case 1:
                 if (UserManagement.user_logged_into_this_system.getType() == 2) {
                     new BookInputMenu();
-                    new BookManagementMenu();
                 } else {
                     System.out.println("没有权限");
                     new Menu();
                 }
+                new BookManagementMenu();
             case 2:
                 if (UserManagement.user_logged_into_this_system.getType() == 2) {
                     new BookUpdateMenu();
-                    new BookManagementMenu();
                 } else {
                     System.out.println("没有权限");
                     new Menu();
                 }
+                new BookManagementMenu();
             case 3:
                 if (UserManagement.user_logged_into_this_system.getType() == 2) {
                     new BookDeleteMenu();
-                    new BookManagementMenu();
                 } else {
                     System.out.println("没有权限");
                     new Menu();
                 }
+                new BookManagementMenu();
             case 4:
                 new BookQueryMenu();
                 new BookManagementMenu();

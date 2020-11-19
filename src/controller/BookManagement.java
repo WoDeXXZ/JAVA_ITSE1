@@ -1,6 +1,7 @@
 package controller;
 
 import model.Book;
+import model.User;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -50,129 +51,62 @@ public class BookManagement {
         }
     }
 
-    public static void Input() {
+    public static void Input(int book_number, String title, String author,
+                             String press, int count) {
         //图书信息录入
-        Scanner scanner;
-        System.out.println("请输入书号");
-        scanner = new Scanner(System.in);
-        int book_number = scanner.nextInt();
-
-        while (FindAccount(book_number)) {
-            System.out.println("此书号已存在，请输入新的书号");
-            scanner = new Scanner(System.in);
-            book_number = scanner.nextInt();
-        }
-
-        System.out.println("请输入书名");
-        scanner = new Scanner(System.in);
-        String title = scanner.next();
-
-        System.out.println("请输入作者");
-        scanner = new Scanner(System.in);
-        String author = scanner.next();
-
-        System.out.println("请输入出版社");
-        scanner = new Scanner(System.in);
-        String press = scanner.next();
-
-        System.out.println("请输入藏书量");
-        scanner = new Scanner(System.in);
-        int count = scanner.nextInt();
-
         Book book = new Book(book_number, title, author, press, count);
         Read();
         bookArrayList.add(book);
         Write(bookArrayList);
     }
 
-    public static void Update() {
+    public static void Update(int book_number, String title, String author,
+                              String press, int count) {
         //图书信息修改
-        Scanner scanner;
-        System.out.println("请输入书号");
-        scanner = new Scanner(System.in);
-        int book_number = scanner.nextInt();
-
         Read();
-        for (int i = 0; i < bookArrayList.size(); i++) {
-            if (book_number == bookArrayList.get(i).getBook_number()) {
-                System.out.println("请输入书名");
-                scanner = new Scanner(System.in);
-                bookArrayList.get(i).setTitle(scanner.next());
-
-                System.out.println("请输入作者");
-                scanner = new Scanner(System.in);
-                bookArrayList.get(i).setAuthor(scanner.next());
-
-                System.out.println("请输入出版社");
-                scanner = new Scanner(System.in);
-                bookArrayList.get(i).setPress(scanner.next());
-
-                System.out.println("请输入藏书量");
-                scanner = new Scanner(System.in);
-                bookArrayList.get(i).setCount(scanner.nextInt());
-                Write(bookArrayList);
+        for (Book book : bookArrayList) {
+            if (book_number == book.getBook_number()) {
+                book.setTitle(title);
+                book.setAuthor(author);
+                book.setPress(press);
+                book.setCount(count);
                 break;
             }
-            if (i == bookArrayList.size() - 1) {
-                System.out.println("没有找到" + book_number + "书号");
-            }
         }
+        Write(bookArrayList);
     }
 
-    public static void QueryBookNumber() {
+    public static Book QueryBookNumber(int book_number) {
         //书号查询
-        Scanner scanner;
-        System.out.println("请输入书号");
-        scanner = new Scanner(System.in);
-        int book_number = scanner.nextInt();
         Read();
         for (int i = 0; i < bookArrayList.size(); i++) {
             if (book_number == bookArrayList.get(i).getBook_number()) {
-                System.out.println(bookArrayList.get(i).toString());
-                break;
-            }
-            if (i == bookArrayList.size() - 1) {
-                System.out.println("没有找到" + book_number + "书号");
+                return bookArrayList.get(i);
             }
         }
+        return null;
     }
 
-    public static void QueryTitle() {
+    public static Book QueryTitle(String title) {
         //书名查询
-        Scanner scanner;
-        System.out.println("请输入书名");
-        scanner = new Scanner(System.in);
-        String title = scanner.next();
         Read();
-        int temp = 0;
         for (int i = 0; i < bookArrayList.size(); i++) {
             if (title.equals(bookArrayList.get(i).getTitle())) {
-                System.out.println(bookArrayList.get(i).toString());
-                temp++;
-            }
-            if (temp == 0 && i == bookArrayList.size() - 1) {
-                System.out.println("没有找到" + title + "书名");
+                return bookArrayList.get(i);
             }
         }
+        return null;
     }
 
-    public static void QueryAuthor() {
+    public static Book QueryAuthor(String author) {
         //作者查询
-        Scanner scanner;
-        System.out.println("请输入作者");
-        scanner = new Scanner(System.in);
-        String author = scanner.next();
         Read();
-        int temp = 0;
         for (int i = 0; i < bookArrayList.size(); i++) {
             if (author.equals(bookArrayList.get(i).getAuthor())) {
-                System.out.println(bookArrayList.get(i).toString());
-                temp++;
-            }
-            if (temp == 0 && i == bookArrayList.size() - 1) {
-                System.out.println("没有找到" + author + "作者");
+                return bookArrayList.get(i);
             }
         }
+        return null;
     }
 
     public static boolean FindAccount(int book_number) {
@@ -198,21 +132,14 @@ public class BookManagement {
     }
 
 
-    public static void Delete() {
+    public static void Delete(int book_number) {
         //图书信息删除
-        Scanner scanner;
-        System.out.println("请输入书号");
-        scanner = new Scanner(System.in);
-        int book_number = scanner.nextInt();
         Read();
         for (int i = 0; i < bookArrayList.size(); i++) {
             if (book_number == bookArrayList.get(i).getBook_number()) {
                 bookArrayList.remove(i);
                 Write(bookArrayList);
                 break;
-            }
-            if (i == bookArrayList.size() - 1) {
-                System.out.println("没有找到" + book_number + "书号");
             }
         }
     }
