@@ -40,7 +40,7 @@ public class BookInputMenu {
         scanner = new Scanner(System.in);
         int count = scanner.nextInt();
 
-        BookManagement.Input(book_number,title,author,press,count);
+        BookManagement.Input(book_number, title, author, press, count);
         System.out.println("录入图书信息成功");
     }
 }
