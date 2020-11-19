@@ -9,6 +9,7 @@ public class Menu {
         System.out.println("1.用户管理");
         System.out.println("2.图书管理");
         System.out.println("3.图书流通管理");
+        System.out.println("4.切换用户");
         System.out.println("0.退出系统");
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
@@ -26,6 +27,8 @@ public class Menu {
                     System.out.println("没有权限");
                     new Menu();
                 }
+            case 4:
+                new LoginMenu();
             default:
                 new Menu();
         }
