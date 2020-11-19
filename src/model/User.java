@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class User implements Serializable {
     //用户类
     //包含用户的所有基础信息
+
     public User() {
         //无参构造函数
     }

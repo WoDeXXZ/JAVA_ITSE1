@@ -1,11 +1,9 @@
 package controller;
 
 import model.Book;
-import model.User;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class BookManagement {
     //管理图书
@@ -76,12 +74,24 @@ public class BookManagement {
         Write(bookArrayList);
     }
 
-    public static Book QueryBookNumber(int book_number) {
-        //书号查询
+    public static void Delete(int book_number) {
+        //图书信息删除
         Read();
         for (int i = 0; i < bookArrayList.size(); i++) {
             if (book_number == bookArrayList.get(i).getBook_number()) {
-                return bookArrayList.get(i);
+                bookArrayList.remove(i);
+                Write(bookArrayList);
+                break;
+            }
+        }
+    }
+
+    public static Book QueryBookNumber(int book_number) {
+        //书号查询
+        Read();
+        for (Book book : bookArrayList) {
+            if (book_number == book.getBook_number()) {
+                return book;
             }
         }
         return null;
@@ -90,9 +100,9 @@ public class BookManagement {
     public static Book QueryTitle(String title) {
         //书名查询
         Read();
-        for (int i = 0; i < bookArrayList.size(); i++) {
-            if (title.equals(bookArrayList.get(i).getTitle())) {
-                return bookArrayList.get(i);
+        for (Book book : bookArrayList) {
+            if (title.equals(book.getTitle())) {
+                return book;
             }
         }
         return null;
@@ -101,9 +111,9 @@ public class BookManagement {
     public static Book QueryAuthor(String author) {
         //作者查询
         Read();
-        for (int i = 0; i < bookArrayList.size(); i++) {
-            if (author.equals(bookArrayList.get(i).getAuthor())) {
-                return bookArrayList.get(i);
+        for (Book book : bookArrayList) {
+            if (author.equals(book.getAuthor())) {
+                return book;
             }
         }
         return null;
@@ -131,15 +141,26 @@ public class BookManagement {
         return 0;
     }
 
-
-    public static void Delete(int book_number) {
-        //图书信息删除
+    public static void FindAccountMakeCountPlusOne(int book_number) {
+        //查找书号并使藏书量加一
         Read();
         for (int i = 0; i < bookArrayList.size(); i++) {
-            if (book_number == bookArrayList.get(i).getBook_number()) {
-                bookArrayList.remove(i);
+            if (book_number == bookArrayList.get(i).getBook_number()
+                    && bookArrayList.get(i).getCount() != 0) {
+                bookArrayList.get(i).setCount(bookArrayList.get(i).getCount() + 1);
                 Write(bookArrayList);
-                break;
+            }
+        }
+    }
+
+    public static void FindAccountMakeCountMinusOne(int book_number) {
+        //查找书号并使藏书量减一
+        Read();
+        for (int i = 0; i < bookArrayList.size(); i++) {
+            if (book_number == bookArrayList.get(i).getBook_number()
+                    && bookArrayList.get(i).getCount() != 0) {
+                bookArrayList.get(i).setCount(bookArrayList.get(i).getCount() - 1);
+                Write(bookArrayList);
             }
         }
     }

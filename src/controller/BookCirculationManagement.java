@@ -57,8 +57,9 @@ public class BookCirculationManagement {
 
         //自动生成流水号
         Read();
-        int serial_number = 0;
-        if (bookCirculationArrayList.get(bookCirculationArrayList.size() - 1).getSerial_number() != 0) {
+        int serial_number;
+        if (bookCirculationArrayList.get(bookCirculationArrayList.size() - 1)
+                .getSerial_number() != 0 && bookCirculationArrayList != null) {
             serial_number = bookCirculationArrayList.get(
                     bookCirculationArrayList.size() - 1).getSerial_number() + 1;
         } else {
@@ -97,6 +98,12 @@ public class BookCirculationManagement {
         //自动生成管理员账号
         int operator = UserManagement.user_logged_into_this_system.getID();
 
+        //使用户借书量减一
+        UserManagement.FindIDMakeCountMinusOne(ID);
+
+        //使图书藏书量减一
+        BookManagement.FindAccountMakeCountMinusOne(book_number);
+
         BookCirculation bookCirculation = new BookCirculation(
                 serial_number, ID, book_number, date, type, operator);
         bookCirculationArrayList.add(bookCirculation);
@@ -106,9 +113,8 @@ public class BookCirculationManagement {
     public static void ReturnBook() {
         //还书
 
-        Read();
-
         //检测流水号
+        Read();
         Scanner scanner;
         System.out.println("请输入流水号");
         scanner = new Scanner(System.in);
@@ -133,6 +139,12 @@ public class BookCirculationManagement {
                 //自动生成管理员账号
                 int operator = UserManagement.user_logged_into_this_system.getID();
 
+                //使用户借书量加一
+                UserManagement.FindIDMakeCountPlusOne(ID);
+
+                //使图书藏书量加一
+                BookManagement.FindAccountMakeCountPlusOne(book_number);
+
                 BookCirculation bookCirculation1 = new BookCirculation(
                         serial_number, ID, book_number, date, type, operator);
                 bookCirculationArrayList.add(bookCirculation1);
@@ -143,7 +155,6 @@ public class BookCirculationManagement {
                 System.out.println("没有找到" + serial_number + "流水号");
             }
         }
-
     }
 
     public static String GenerateCurrentTime() {
@@ -157,7 +168,6 @@ public class BookCirculationManagement {
         int s = cal.get(Calendar.SECOND);
         return y + "年" + m + "月" + d + "日" + h + "时" + mi + "分" + s + "秒";
     }
-
 
     public static void QueryTotal() {
         //总借阅信息查询

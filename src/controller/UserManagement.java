@@ -54,12 +54,6 @@ public class UserManagement {
         }
     }
 
-    public static ArrayList<User> GetUsers() {
-        //获取所有用户信息
-        Read();
-        return userArrayList;
-    }
-
     public static boolean Login(int ID, String password) {
         //登录方法
         if (FindAccountPassword(ID, password)) {
@@ -70,7 +64,6 @@ public class UserManagement {
             return false;
         }
     }
-
 
     public static void Input(int type, int ID, String password, String name,
                              String unit, int telephone, int count) {
@@ -154,6 +147,30 @@ public class UserManagement {
             }
         }
         return false;
+    }
+
+    public static void FindIDMakeCountPlusOne(int ID) {
+        //查找账号并使借书量加一
+        Read();
+        for (int i = 0; i < userArrayList.size(); i++) {
+            if (ID == userArrayList.get(i).getID()
+                    && userArrayList.get(i).getCount() != 0) {
+                userArrayList.get(i).setCount(userArrayList.get(i).getCount() + 1);
+                Write(userArrayList);
+            }
+        }
+    }
+
+    public static void FindIDMakeCountMinusOne(int ID) {
+        //查找账号并使借书量减一
+        Read();
+        for (int i = 0; i < userArrayList.size(); i++) {
+            if (ID == userArrayList.get(i).getID()
+                    && userArrayList.get(i).getCount() != 0) {
+                userArrayList.get(i).setCount(userArrayList.get(i).getCount() - 1);
+                Write(userArrayList);
+            }
+        }
     }
 
     public static void Compare(ArrayList<User> userArrayList) {

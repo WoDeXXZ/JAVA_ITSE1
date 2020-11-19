@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Book implements Serializable {
     //图书类
     //包含图书的所有基础信息
+
     public Book() {
         //无参构造函数
     }
@@ -79,7 +80,6 @@ public class Book implements Serializable {
                 "," + press +
                 "," + count + '\n';
     }
-
 
     private int book_number;//书号
     private String title;//书名
