@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Book implements Serializable {
     //图书类
     //包含图书的所有基础信息
+    //继承Serializable接口实现Java序列化
 
     public Book() {
         //无参构造函数

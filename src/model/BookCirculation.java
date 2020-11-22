@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class BookCirculation implements Serializable {
     //图书流通类
     //包含图书流通的所有基础信息
+    //继承Serializable接口实现Java序列化
 
     public BookCirculation() {
         //无参构造函数
