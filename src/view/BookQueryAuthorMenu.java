@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class BookQueryAuthorMenu {
     public BookQueryAuthorMenu() {
         Scanner scanner;
-        System.out.println("请输入书名");
+        System.out.println("请输入作者");
         scanner = new Scanner(System.in);
         String author = scanner.next();
 
