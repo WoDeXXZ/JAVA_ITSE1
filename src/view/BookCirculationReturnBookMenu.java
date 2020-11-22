@@ -10,9 +10,9 @@ public class BookCirculationReturnBookMenu {
         Scanner scanner;
         System.out.println("请输入流水号");
         scanner = new Scanner(System.in);
-        int serial_number = scanner.nextInt();
+        int serialNumber = scanner.nextInt();
 
-        while (BookCirculationManagement.JudgmentSerial_Number(serial_number)) {
+        while (BookCirculationManagement.JudgmentSerialNumber(serialNumber)) {
             System.out.println("此流水号不存在，请重新输入流水号");
             System.out.println("或输入0返回主界面");
             scanner = new Scanner(System.in);
@@ -21,9 +21,9 @@ public class BookCirculationReturnBookMenu {
                 new Menu();
                 break;
             }
-            serial_number = scanner.nextInt();
+            serialNumber = scanner.nextInt();
         }
 
-        BookCirculationManagement.ReturnBook(serial_number);
+        BookCirculationManagement.ReturnBook(serialNumber);
     }
 }

@@ -8,9 +8,8 @@ public class BookQueryMenu {
         System.out.println("2. 按书名查询 ");
         System.out.println("3. 按作者查询 ");
         System.out.println("0. 返回主菜单 ");
-        Scanner sc = new Scanner(System.in);
-        int i = sc.nextInt();
-        switch (i) {
+        Scanner scanner = new Scanner(System.in);
+        switch (scanner.nextInt()) {
             case 0:
                 new Menu();
             case 1:

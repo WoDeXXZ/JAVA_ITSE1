@@ -31,10 +31,10 @@ public class BookCirculationBorrowBookMenu {
         //检测书号是否存在及该书是否被借完
         System.out.println("请输入书号");
         scanner = new Scanner(System.in);
-        int book_number = scanner.nextInt();
+        int bookNumber = scanner.nextInt();
 
-        while (!BookManagement.JudgmentAccount(book_number) &&
-                BookManagement.FindAccountReturnCount(book_number) != 0) {
+        while (!BookManagement.JudgmentAccount(bookNumber) &&
+                BookManagement.FindAccountReturnCount(bookNumber) != 0) {
             System.out.println("此书号不存在或此书号的书已借完，请输入新的书号");
             System.out.println("或输入0返回主界面");
             scanner = new Scanner(System.in);
@@ -43,9 +43,9 @@ public class BookCirculationBorrowBookMenu {
                 new Menu();
                 break;
             }
-            book_number = scanner.nextInt();
+            bookNumber = scanner.nextInt();
         }
 
-        BookCirculationManagement.BorrowBook(ID, book_number);
+        BookCirculationManagement.BorrowBook(ID, bookNumber);
     }
 }

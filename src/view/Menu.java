@@ -12,8 +12,7 @@ public class Menu {
         System.out.println("4.切换用户");
         System.out.println("0.退出系统");
         Scanner scanner = new Scanner(System.in);
-        int i = scanner.nextInt();
-        switch (i) {
+        switch (scanner.nextInt()) {
             case 0:
                 System.exit(0);
             case 1:
@@ -21,7 +20,7 @@ public class Menu {
             case 2:
                 new BookManagementMenu();
             case 3:
-                if (UserManagement.user_logged_into_this_system.getType() == 2) {
+                if (UserManagement.userLoggedIntoThisSystem.getType() == 2) {
                     new BookCirculationManagementMenu();
                 } else {
                     System.out.println("没有权限");

@@ -5,8 +5,6 @@ import model.BookCirculation;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Objects;
-import java.util.Scanner;
 
 public class BookCirculationManagement {
     //管理图书流通
@@ -24,9 +22,9 @@ public class BookCirculationManagement {
             String temp;
             while ((temp = reader.readLine()) != null) {
                 BookCirculation bookCirculation = new BookCirculation();
-                bookCirculation.setSerial_number(Integer.parseInt(temp.split(",")[0]));
+                bookCirculation.setSerialNumber(Integer.parseInt(temp.split(",")[0]));
                 bookCirculation.setID(Integer.parseInt(temp.split(",")[1]));
-                bookCirculation.setBook_number(Integer.parseInt(temp.split(",")[2]));
+                bookCirculation.setBookNumber(Integer.parseInt(temp.split(",")[2]));
                 bookCirculation.setDate(temp.split(",")[3]);
                 bookCirculation.setType(Integer.parseInt(temp.split(",")[4]));
                 bookCirculation.setOperator(Integer.parseInt(temp.split(",")[5]));
@@ -52,18 +50,18 @@ public class BookCirculationManagement {
         }
     }
 
-    public static void BorrowBook(int ID, int book_number) {
+    public static void BorrowBook(int ID, int bookNumber) {
         //借书
 
         //自动生成流水号
         Read();
-        int serial_number;
+        int serialNumber;
         if (bookCirculationArrayList.get(bookCirculationArrayList.size() - 1)
-                .getSerial_number() != 0 && bookCirculationArrayList != null) {
-            serial_number = bookCirculationArrayList.get(
-                    bookCirculationArrayList.size() - 1).getSerial_number() + 1;
+                .getSerialNumber() != 0 && bookCirculationArrayList != null) {
+            serialNumber = bookCirculationArrayList.get(
+                    bookCirculationArrayList.size() - 1).getSerialNumber() + 1;
         } else {
-            serial_number = 1;
+            serialNumber = 1;
         }
 
         //自动生成当前时间
@@ -73,26 +71,26 @@ public class BookCirculationManagement {
         int type = 0;
 
         //自动生成管理员账号
-        int operator = UserManagement.user_logged_into_this_system.getID();
+        int operator = UserManagement.userLoggedIntoThisSystem.getID();
 
         //使用户借书量减一
         UserManagement.FindIDMakeCountMinusOne(ID);
 
         //使图书藏书量减一
-        BookManagement.FindAccountMakeCountMinusOne(book_number);
+        BookManagement.FindAccountMakeCountMinusOne(bookNumber);
 
         BookCirculation bookCirculation = new BookCirculation(
-                serial_number, ID, book_number, date, type, operator);
+                serialNumber, ID, bookNumber, date, type, operator);
         bookCirculationArrayList.add(bookCirculation);
         Write(bookCirculationArrayList);
     }
 
-    public static void ReturnBook(int serial_number) {
+    public static void ReturnBook(int serialNumber) {
         //还书
 
         Read();
         for (int i = 0; i < bookCirculationArrayList.size(); i++) {
-            if (serial_number == bookCirculationArrayList.get(i).getSerial_number()) {
+            if (serialNumber == bookCirculationArrayList.get(i).getSerialNumber()) {
                 BookCirculation bookCirculation = new BookCirculation(
                         bookCirculationArrayList.get(i));
 
@@ -100,7 +98,7 @@ public class BookCirculationManagement {
                 int ID = bookCirculation.getID();
 
                 //所借的书号
-                int book_number = bookCirculation.getBook_number();
+                int bookNumber = bookCirculation.getBookNumber();
 
                 //自动生成当前时间
                 String date = GenerateCurrentTime();
@@ -109,16 +107,16 @@ public class BookCirculationManagement {
                 int type = 1;
 
                 //自动生成管理员账号
-                int operator = UserManagement.user_logged_into_this_system.getID();
+                int operator = UserManagement.userLoggedIntoThisSystem.getID();
 
                 //使用户借书量加一
                 UserManagement.FindIDMakeCountPlusOne(ID);
 
                 //使图书藏书量加一
-                BookManagement.FindAccountMakeCountPlusOne(book_number);
+                BookManagement.FindAccountMakeCountPlusOne(bookNumber);
 
                 BookCirculation bookCirculation1 = new BookCirculation(
-                        serial_number, ID, book_number, date, type, operator);
+                        serialNumber, ID, bookNumber, date, type, operator);
                 bookCirculationArrayList.add(bookCirculation1);
                 Write(bookCirculationArrayList);
                 break;
@@ -138,11 +136,11 @@ public class BookCirculationManagement {
         return y + "年" + m + "月" + d + "日" + h + "时" + mi + "分" + s + "秒";
     }
 
-    public static boolean JudgmentSerial_Number(int serial_number) {
+    public static boolean JudgmentSerialNumber(int serialNumber) {
         //判断流水号是否存在
         Read();
         for (BookCirculation bookCirculation : bookCirculationArrayList) {
-            if (serial_number == bookCirculation.getSerial_number()) {
+            if (serialNumber == bookCirculation.getSerialNumber()) {
                 return true;
             }
         }
@@ -155,11 +153,11 @@ public class BookCirculationManagement {
         return bookCirculationArrayList;
     }
 
-    public static BookCirculation QuerySerial_Number(int serial_number) {
+    public static BookCirculation QuerySerialNumber(int serialNumber) {
         //流水号借阅信息查询
         Read();
         for (BookCirculation bookCirculation : bookCirculationArrayList) {
-            if (serial_number == bookCirculation.getSerial_number()) {
+            if (serialNumber == bookCirculation.getSerialNumber()) {
                 return bookCirculation;
             }
         }
@@ -178,12 +176,12 @@ public class BookCirculationManagement {
         return bookCirculationArrayList1;
     }
 
-    public static ArrayList<BookCirculation> QueryBook_Number(int book_number) {
+    public static ArrayList<BookCirculation> QueryBookNumber(int bookNumber) {
         //书号借阅信息查询
         Read();
         ArrayList<BookCirculation> bookCirculationArrayList1 = new ArrayList<>();
         for (BookCirculation bookCirculation : bookCirculationArrayList) {
-            if (book_number == bookCirculation.getBook_number()) {
+            if (bookNumber == bookCirculation.getBookNumber()) {
                 bookCirculationArrayList1.add(bookCirculation);
             }
         }

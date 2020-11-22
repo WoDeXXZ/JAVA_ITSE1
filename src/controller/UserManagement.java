@@ -10,7 +10,7 @@ public class UserManagement {
     //管理用户
     //每个用户的账号都是唯一的
 
-    public static User user_logged_into_this_system;//登录此系统的用户
+    public static User userLoggedIntoThisSystem;//登录此系统的用户
 
     public static ArrayList<User> userArrayList;
     //存储数据类型为User的ArrayList集合
@@ -57,7 +57,7 @@ public class UserManagement {
     public static boolean Login(int ID, String password) {
         //登录方法
         if (JudgmentAccountPassword(ID, password)) {
-            user_logged_into_this_system = new User(
+            userLoggedIntoThisSystem = new User(
                     Objects.requireNonNull(Query(ID)));
             return true;
         } else {

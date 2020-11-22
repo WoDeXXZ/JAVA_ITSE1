@@ -21,7 +21,7 @@ public class BookManagement {
             String temp;
             while ((temp = reader.readLine()) != null) {
                 Book book = new Book();
-                book.setBook_number(Integer.parseInt(temp.split(",")[0]));
+                book.setBookNumber(Integer.parseInt(temp.split(",")[0]));
                 book.setTitle(temp.split(",")[1]);
                 book.setAuthor(temp.split(",")[2]);
                 book.setPress(temp.split(",")[3]);
@@ -49,21 +49,21 @@ public class BookManagement {
         }
     }
 
-    public static void Input(int book_number, String title, String author,
+    public static void Input(int bookNumber, String title, String author,
                              String press, int count) {
         //图书信息录入
-        Book book = new Book(book_number, title, author, press, count);
+        Book book = new Book(bookNumber, title, author, press, count);
         Read();
         bookArrayList.add(book);
         Write(bookArrayList);
     }
 
-    public static void Update(int book_number, String title, String author,
+    public static void Update(int bookNumber, String title, String author,
                               String press, int count) {
         //图书信息修改
         Read();
         for (Book book : bookArrayList) {
-            if (book_number == book.getBook_number()) {
+            if (bookNumber == book.getBookNumber()) {
                 book.setTitle(title);
                 book.setAuthor(author);
                 book.setPress(press);
@@ -74,11 +74,11 @@ public class BookManagement {
         Write(bookArrayList);
     }
 
-    public static void Delete(int book_number) {
+    public static void Delete(int bookNumber) {
         //图书信息删除
         Read();
         for (int i = 0; i < bookArrayList.size(); i++) {
-            if (book_number == bookArrayList.get(i).getBook_number()) {
+            if (bookNumber == bookArrayList.get(i).getBookNumber()) {
                 bookArrayList.remove(i);
                 Write(bookArrayList);
                 break;
@@ -86,11 +86,11 @@ public class BookManagement {
         }
     }
 
-    public static Book QueryBookNumber(int book_number) {
+    public static Book QueryBookNumber(int bookNumber) {
         //书号查询
         Read();
         for (Book book : bookArrayList) {
-            if (book_number == book.getBook_number()) {
+            if (bookNumber == book.getBookNumber()) {
                 return book;
             }
         }
@@ -119,33 +119,33 @@ public class BookManagement {
         return null;
     }
 
-    public static boolean JudgmentAccount(int book_number) {
+    public static boolean JudgmentAccount(int bookNumber) {
         //判断书号是否存在
         Read();
         for (Book book : bookArrayList) {
-            if (book_number == book.getBook_number()) {
+            if (bookNumber == book.getBookNumber()) {
                 return true;
             }
         }
         return false;
     }
 
-    public static int FindAccountReturnCount(int book_number) {
+    public static int FindAccountReturnCount(int bookNumber) {
         //查找书号并返回书的数量
         Read();
         for (Book book : bookArrayList) {
-            if (book_number == book.getBook_number() && book.getCount() != 0) {
+            if (bookNumber == book.getBookNumber() && book.getCount() != 0) {
                 return book.getCount();
             }
         }
         return 0;
     }
 
-    public static void FindAccountMakeCountPlusOne(int book_number) {
+    public static void FindAccountMakeCountPlusOne(int bookNumber) {
         //查找书号并使藏书量加一
         Read();
         for (int i = 0; i < bookArrayList.size(); i++) {
-            if (book_number == bookArrayList.get(i).getBook_number()
+            if (bookNumber == bookArrayList.get(i).getBookNumber()
                     && bookArrayList.get(i).getCount() != 0) {
                 bookArrayList.get(i).setCount(bookArrayList.get(i).getCount() + 1);
                 Write(bookArrayList);
@@ -153,11 +153,11 @@ public class BookManagement {
         }
     }
 
-    public static void FindAccountMakeCountMinusOne(int book_number) {
+    public static void FindAccountMakeCountMinusOne(int bookNumber) {
         //查找书号并使藏书量减一
         Read();
         for (int i = 0; i < bookArrayList.size(); i++) {
-            if (book_number == bookArrayList.get(i).getBook_number()
+            if (bookNumber == bookArrayList.get(i).getBookNumber()
                     && bookArrayList.get(i).getCount() != 0) {
                 bookArrayList.get(i).setCount(bookArrayList.get(i).getCount() - 1);
                 Write(bookArrayList);
@@ -167,12 +167,12 @@ public class BookManagement {
 
     public static void Compare(ArrayList<Book> bookArrayList) {
         //选择排序
-        //按照书号book_number从小到大开始排序
+        //按照书号bookNumber从小到大开始排序
         for (int i = 0; i < bookArrayList.size(); i++) {
             int temp = i;
             for (int j = i + 1; j < bookArrayList.size(); j++) {
-                if (bookArrayList.get(j).getBook_number() <
-                        bookArrayList.get(temp).getBook_number()) {
+                if (bookArrayList.get(j).getBookNumber() <
+                        bookArrayList.get(temp).getBookNumber()) {
                     temp = j;
                 }
             }

@@ -10,12 +10,12 @@ public class BookCirculation implements Serializable {
         //无参构造函数
     }
 
-    public BookCirculation(int serial_number, int ID, int book_number,
+    public BookCirculation(int serialNumber, int ID, int bookNumber,
                            String date, int type, int operator) {
         //有参构造函数
-        this.serial_number = serial_number;
+        this.serialNumber = serialNumber;
         this.ID = ID;
-        this.book_number = book_number;
+        this.bookNumber = bookNumber;
         this.date = date;
         this.type = type;
         this.operator = operator;
@@ -23,21 +23,21 @@ public class BookCirculation implements Serializable {
 
     public BookCirculation(BookCirculation bookCirculation) {
         //复制构造函数
-        this.serial_number = bookCirculation.serial_number;
+        this.serialNumber = bookCirculation.serialNumber;
         this.ID = bookCirculation.ID;
-        this.book_number = bookCirculation.book_number;
+        this.bookNumber = bookCirculation.bookNumber;
         this.date = bookCirculation.date;
         this.type = bookCirculation.type;
         this.operator = bookCirculation.operator;
     }
 
     //下面是get和set函数
-    public int getSerial_number() {
-        return serial_number;
+    public int getSerialNumber() {
+        return serialNumber;
     }
 
-    public void setSerial_number(int serial_number) {
-        this.serial_number = serial_number;
+    public void setSerialNumber(int serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public int getID() {
@@ -48,12 +48,12 @@ public class BookCirculation implements Serializable {
         this.ID = ID;
     }
 
-    public int getBook_number() {
-        return book_number;
+    public int getBookNumber() {
+        return bookNumber;
     }
 
-    public void setBook_number(int book_number) {
-        this.book_number = book_number;
+    public void setBookNumber(int bookNumber) {
+        this.bookNumber = bookNumber;
     }
 
     public String getDate() {
@@ -84,17 +84,17 @@ public class BookCirculation implements Serializable {
     @Override
     public String toString() {
         //覆写toString
-        return serial_number +
+        return serialNumber +
                 "," + ID +
-                "," + book_number +
+                "," + bookNumber +
                 "," + date +
                 "," + type +
                 "," + operator + '\n';
     }
 
-    private int serial_number;//流水号
+    private int serialNumber;//流水号
     private int ID;//用户名
-    private int book_number;//书号
+    private int bookNumber;//书号
     private String date;//日期
     private int type;//借还书类型 0是借书 1是还书
     private int operator;//操作人

@@ -10,9 +10,9 @@ public class BookInputMenu {
         Scanner scanner;
         System.out.println("请输入书号");
         scanner = new Scanner(System.in);
-        int book_number = scanner.nextInt();
+        int bookNumber = scanner.nextInt();
 
-        while (BookManagement.JudgmentAccount(book_number)) {
+        while (BookManagement.JudgmentAccount(bookNumber)) {
             System.out.println("此书号已存在，请输入新的书号");
             System.out.println("或输入0返回主界面");
             scanner = new Scanner(System.in);
@@ -21,7 +21,7 @@ public class BookInputMenu {
                 new Menu();
                 break;
             }
-            book_number = scanner.nextInt();
+            bookNumber = scanner.nextInt();
         }
 
         System.out.println("请输入书名");
@@ -40,7 +40,7 @@ public class BookInputMenu {
         scanner = new Scanner(System.in);
         int count = scanner.nextInt();
 
-        BookManagement.Input(book_number, title, author, press, count);
+        BookManagement.Input(bookNumber, title, author, press, count);
         System.out.println("录入图书信息成功");
     }
 }

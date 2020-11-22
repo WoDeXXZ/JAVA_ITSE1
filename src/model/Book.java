@@ -10,10 +10,10 @@ public class Book implements Serializable {
         //无参构造函数
     }
 
-    public Book(int book_number, String title, String author,
+    public Book(int bookNumber, String title, String author,
                 String press, int count) {
         //有参构造函数
-        this.book_number = book_number;
+        this.bookNumber = bookNumber;
         this.title = title;
         this.author = author;
         this.press = press;
@@ -22,7 +22,7 @@ public class Book implements Serializable {
 
     public Book(Book book) {
         //复制构造函数
-        this.book_number = book.book_number;
+        this.bookNumber = book.bookNumber;
         this.title = book.title;
         this.author = book.author;
         this.press = book.press;
@@ -30,12 +30,12 @@ public class Book implements Serializable {
     }
 
     //下面是get和set函数
-    public int getBook_number() {
-        return book_number;
+    public int getBookNumber() {
+        return bookNumber;
     }
 
-    public void setBook_number(int book_number) {
-        this.book_number = book_number;
+    public void setBookNumber(int bookNumber) {
+        this.bookNumber = bookNumber;
     }
 
     public String getTitle() {
@@ -74,14 +74,14 @@ public class Book implements Serializable {
     @Override
     public String toString() {
         //覆写toString
-        return book_number +
+        return bookNumber +
                 "," + title +
                 "," + author +
                 "," + press +
                 "," + count + '\n';
     }
 
-    private int book_number;//书号
+    private int bookNumber;//书号
     private String title;//书名
     private String author;//作者
     private String press;//出版社

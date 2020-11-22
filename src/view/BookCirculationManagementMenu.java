@@ -8,9 +8,8 @@ public class BookCirculationManagementMenu {
         System.out.println("2. 还书处理 ");
         System.out.println("3. 借阅信息查询 ");
         System.out.println("0. 返回主菜单 ");
-        Scanner sc = new Scanner(System.in);
-        int i = sc.nextInt();
-        switch (i) {
+        Scanner scanner = new Scanner(System.in);
+        switch (scanner.nextInt()) {
             case 0:
                 new Menu();
             case 1:

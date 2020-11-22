@@ -9,10 +9,8 @@ public class LoginMenu {
         System.out.println("************************");
         System.out.println("1.登录账号");
         System.out.println("2.注册账号");
-        Scanner scanner;
-        scanner = new Scanner(System.in);
-        int nextInt = scanner.nextInt();
-        switch (nextInt) {
+        Scanner scanner = new Scanner(System.in);
+        switch (scanner.nextInt()) {
             case 1:
                 for (int i = 0; true; i++) {
                     System.out.println("输入账号");

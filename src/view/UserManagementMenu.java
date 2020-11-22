@@ -13,33 +13,32 @@ public class UserManagementMenu {
         System.out.println("5. 用户密码修改 ");
         System.out.println("0. 返回主菜单 ");
         Scanner scanner = new Scanner(System.in);
-        int i = scanner.nextInt();
-        switch (i) {
+        switch (scanner.nextInt()) {
             case 0:
                 new Menu();
             case 1:
-                if (UserManagement.user_logged_into_this_system.getType() == 1) {
+                if (UserManagement.userLoggedIntoThisSystem.getType() == 1) {
                     new UserInputMenu();
                 } else {
                     System.out.println("没有权限");
                 }
                 new UserManagementMenu();
             case 2:
-                if (UserManagement.user_logged_into_this_system.getType() == 1) {
+                if (UserManagement.userLoggedIntoThisSystem.getType() == 1) {
                     new UserUpdateMenu();
                 } else {
                     System.out.println("没有权限");
                 }
                 new UserManagementMenu();
             case 3:
-                if (UserManagement.user_logged_into_this_system.getType() == 1) {
+                if (UserManagement.userLoggedIntoThisSystem.getType() == 1) {
                     new UserDeleteMenu();
                 } else {
                     System.out.println("没有权限");
                 }
                 new UserManagementMenu();
             case 4:
-                if (UserManagement.user_logged_into_this_system.getType() == 1) {
+                if (UserManagement.userLoggedIntoThisSystem.getType() == 1) {
                     new UserQueryMenu();
                 } else {
                     System.out.println("没有权限");
